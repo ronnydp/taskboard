@@ -8,6 +8,11 @@
 
     "routes": [
         {
+            "src": "/board/(.*)",
+            "dest": "src/index.js"
+        },
+
+        {
             "src": "/(.*)",
             "dest": "src/index.ejs"
         }
