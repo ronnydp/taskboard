@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="col-1">
+          <form action="/board/<%= data[0].id %>/update" method="POST">
+          <img src="/board/img/Logo.svg" alt="Logo" />
+        </div>
+        <input
+          name="board_name"
+          id="boardName"
+          type="text"
+          disabled
+          minlength="4"
+          maxlength="17"
+          required
+          <% if (data.length > 0 && data[0].board_title) {%>
+          value="<%= data[0].board_title%>"
+          <%} else {%>
+            placeholder="My Task Board"
+            <%}%>
+        />
+          <div class="col-3">
+            <img src="/board/img/Edit_duotone.svg" alt="Edit" id="editBtn" />
+            <button type="submit" id="saveBoardNameBtn">
+              <img width="20" height="20" src="https://img.icons8.com/color/48/save--v1.png" alt="save--v1"/>
+            </button>
+            <button type="button" id="cancelBoardNameBtn">
+              <img width="20" height="20" src="https://img.icons8.com/office/40/cancel.png" alt="cancel"/>
+            </button>
+          </div>
+          <br />
+          <p>Tasks to keep organised</p>
+        </header>
+      </form>
+      <main>
+        <%- include('partials/task-form.ejs') %>
+        <% data.forEach(task =>{ %>
+          <input type="hidden" id="boardId" value="<%= task.id %>">
+        <a href="" class="task-link" data-id="<%= task.task_id %>">
+          <div class="card-task">
+            <div class="col-1">
+              <span id="icon-task-color"
+                ><img width="20" height="20" src="<%= task.icon %>"
+              /></span>
+            </div>
+            <h3>
+              <%= task.title %> <% if (task.description) {%>
+              <p><%= task.description %></p>
+              <%}%>
+            </h3>
+            <div class="col-3">
+              <span class="icon-<%= task.state %>"
+                ><img src="/board/img/<%= task.state %>.svg" alt="<%= task.state %>"
+              /></span>
+            </div>
+          </div>
+        </a>
+        <% }); %>
+        
+        <form action="/board/<%= data[0].id %>/tasks" method="POST">
+          <button type="submit">
+            <div class="col-1">
+              <span
+              ><img src="/board/img/Add_round_duotone.svg" alt="new-task"
+              /></span>
+            </div>
+            <h4>Add new task</h4>
+          </button>
+        </form>
+      </main>
+      <footer>
+        <script src="/board/assets/index.js" type="module"></script>
+      </footer>
+    </div>
+  </body>
+</html>

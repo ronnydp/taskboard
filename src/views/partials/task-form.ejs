@@ -1,0 +1,174 @@
+<div class="modal-background" id="myModal">
+  <div class="modal">
+    <div class="head">
+      <h4>Task details</h4>
+      <span id="closeModalBtn" class="close"
+        ><img src="/board/img/close_ring_duotone-1.svg" alt=""
+      /></span>
+    </div>
+    <div class="modal-body">
+      <!--^ FORM -->
+      <form
+        action="/board/<%= data.board_id %>/tasks/<%= data.task_id %>"
+        id="form"
+        method="POST"
+      >
+        <label id="taskNameLabel" for="title">Task Name</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter task name"
+          required
+          value="<%= data.title %>"
+        />
+
+        <label id="descriptionLabel" for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          cols="1"
+          rows="4"
+          placeholder="Enter a short description"
+        >
+<%= data.description %></textarea
+        >
+
+        <!--^ ICONS -->
+        <span>Icon</span>
+        <div class="form-icons">
+          <input type="radio" name="icon"
+          value="https://img.icons8.com/color/48/working-with-a-laptop.png"
+          id="working" <%= data.icon ===
+          "https://img.icons8.com/color/48/working-with-a-laptop.png" ?
+          "checked" : "" %> />
+          <label for="working">
+            <img
+              width="20"
+              height="20"
+              src="https://img.icons8.com/color/48/working-with-a-laptop.png"
+              alt="working-with-a-laptop"
+            />
+          </label>
+
+          <input type="radio" name="icon"
+          value="https://img.icons8.com/ios/50/speech-bubble-with-dots--v1.png"
+          id="bubble" <%= data.icon ===
+          "https://img.icons8.com/ios/50/speech-bubble-with-dots--v1.png" ?
+          "checked" : "" %> />
+          <label for="bubble">
+            <img
+              width="20"
+              height="20"
+              src="https://img.icons8.com/ios/50/speech-bubble-with-dots--v1.png"
+              alt="speech-bubble-with-dots--v1"
+            />
+          </label>
+
+          <input type="radio" name="icon"
+          value="https://img.icons8.com/emoji/48/hot-beverage.png" id="beverage"
+          <%= data.icon === "https://img.icons8.com/emoji/48/hot-beverage.png" ?
+          "checked" : "" %>/>
+          <label for="beverage">
+            <img
+              width="20"
+              height="20"
+              src="https://img.icons8.com/emoji/48/hot-beverage.png"
+              alt="hot-beverage"
+            />
+          </label>
+
+          <input type="radio" name="icon"
+          value="https://img.icons8.com/emoji/48/man-lifting-weights.png"
+          id="weights" <%= data.icon ===
+          "https://img.icons8.com/emoji/48/man-lifting-weights.png" ? "checked"
+          : "" %>/>
+          <label for="weights">
+            <img
+              width="20"
+              height="20"
+              src="https://img.icons8.com/emoji/48/man-lifting-weights.png"
+              alt="man-lifting-weights"
+            />
+          </label>
+
+          <input type="radio" name="icon"
+          value="https://img.icons8.com/doodle/48/books.png" id="books" <%=
+          data.icon === "https://img.icons8.com/doodle/48/books.png" ? "checked"
+          : "" %>/>
+          <label for="books">
+            <img
+              width="20"
+              height="20"
+              src="https://img.icons8.com/doodle/48/books.png"
+              alt="books"
+            />
+          </label>
+
+          <input type="radio" name="icon"
+          value="https://img.icons8.com/emoji/48/alarm-clock-emoji.png"
+          id="clock" <%= data.icon ===
+          "https://img.icons8.com/emoji/48/alarm-clock-emoji.png" ? "checked" :
+          "" %>/>
+          <label for="clock">
+            <img
+              width="20"
+              height="20"
+              src="https://img.icons8.com/emoji/48/alarm-clock-emoji.png"
+              alt="alarm-clock-emoji"
+            />
+          </label>
+        </div>
+
+        <!--^ STATUS -->
+        <span>Status</span>
+        <div class="form-status">
+          <label for="inprogress">
+            <span class="icon-inprogress"
+              ><img src="/board/img/inprogress.svg" alt="inprogress"
+            /></span>
+            <p>In Progress</p>
+            <input type="radio" name="status" id="inprogress" value="inprogress"
+            <%= data.state === "inprogress" ? "checked" : "" %> />
+            <span class="icon-check"></span>
+          </label>
+
+          <label for="completed">
+            <span class="icon-completed"
+              ><img src="/board/img/completed.svg" alt="completed"
+            /></span>
+            <p>Completed</p>
+            <input type="radio" name="status" id="completed" value="completed"
+            <%= data.state === "completed" ? "checked" : "" %> />
+            <span class="icon-check"></span>
+          </label>
+
+          <label for="wontdo">
+            <span class="icon-wontdo"
+              ><img src="/board/img/wontdo.svg" alt="wontdo"
+            /></span>
+            <p>Won't do</p>
+            <input type="radio" name="status" id="wontdo" value="wontdo" <%=
+            data.state === "wontdo" ? "checked" : "" %> />
+            <span class="icon-check"></span>
+          </label>
+        </div>
+
+        <!--^ SUBMIT  -->
+        <div class="form-buttons">
+          <a
+            href="/board/<%= data.board_id %>/tasks/delete/<%= data.task_id %>"
+          >
+            <button type="button">
+              Delete <img src="/board/img/Trash.svg" alt="trash" />
+            </button>
+          </a>
+
+          <button type="submit">
+            Save <img src="/board/img/Done_round.svg" alt="save" />
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
