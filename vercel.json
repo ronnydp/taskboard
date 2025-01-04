@@ -10,12 +10,5 @@
       "src": "/(.*)",
       "dest": "src/index.js"
     }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/board/:board_id/tasks",
-      "permanent": true
-    }
   ]
 }

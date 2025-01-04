@@ -9,6 +9,10 @@ import {
 
 const router = Router();
 
+router.get("/", (req, res) => {
+  res.redirect("/board/1/tasks");
+})
+
 router.get("/board/:board_id/tasks", getTasks);
 
 router.post("/board/:board_id/tasks", createTask);
