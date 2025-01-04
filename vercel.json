@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/src/views/index.js"
+      "dest": "/src/index.js"
     }
   ],
   "builds": [
