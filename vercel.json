@@ -1,20 +1,31 @@
 {
-    "builds": [
-        {
-        "src": "src/index.js",
-        "use": "@vercel/node"
-        }
-    ],
-
-    "routes": [
-        {
-            "src": "/board/(.*)",
-            "dest": "src/index.js"
-        },
-
-        {
-            "src": "/(.*)",
-            "dest": "src/index.ejs"
-        }
-    ]
+  "version": 2,
+  "routes": [
+    {
+      "src": "/board/(.*)/tasks",
+      "dest": "/src/views/board.ejs"
+    },
+    {
+      "src": "/board/(.*)",
+      "dest": "/src/views/board.ejs"
+    },
+    {
+      "src": "/tasks/(.*)",
+      "dest": "/src/views/tasks.ejs"
+    },
+    {
+      "src": "/",
+      "dest": "/src/views/index.ejs"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js"
+    }
+  ],
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
+    }
+  ]
 }
