@@ -398,7 +398,7 @@ input[type="radio"]:checked + label {
 
 .form-status input[type="radio"]:checked + .icon-check {
   background-color: #3662e3;
-  content: url("/board/img/Done_round.svg");
+  content: url("/img/Done_round.svg");
   color: white;
   text-align: center;
   border-radius: 50%;

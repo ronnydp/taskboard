@@ -7,8 +7,8 @@
     <div class="container">
       <header>
         <div class="col-1">
-          <form action="/board/<%= data[0].id %>/update" method="POST">
-          <img src="/board/img/Logo.svg" alt="Logo" />
+          <form action="/<%= data[0].id %>/update" method="POST">
+          <img src="/img/Logo.svg" alt="Logo" />
         </div>
         <input
           name="board_name"
@@ -25,7 +25,7 @@
             <%}%>
         />
           <div class="col-3">
-            <img src="/board/img/Edit_duotone.svg" alt="Edit" id="editBtn" />
+            <img src="/img/Edit_duotone.svg" alt="Edit" id="editBtn" />
             <button type="submit" id="saveBoardNameBtn">
               <img width="20" height="20" src="https://img.icons8.com/color/48/save--v1.png" alt="save--v1"/>
             </button>
@@ -55,18 +55,18 @@
             </h3>
             <div class="col-3">
               <span class="icon-<%= task.state %>"
-                ><img src="/board/img/<%= task.state %>.svg" alt="<%= task.state %>"
+                ><img src="/img/<%= task.state %>.svg" alt="<%= task.state %>"
               /></span>
             </div>
           </div>
         </a>
         <% }); %>
         
-        <form action="/board/<%= data[0].id %>/tasks" method="POST">
+        <form action="/<%= data[0].id %>/tasks" method="POST">
           <button type="submit">
             <div class="col-1">
               <span
-              ><img src="/board/img/Add_round_duotone.svg" alt="new-task"
+              ><img src="/img/Add_round_duotone.svg" alt="new-task"
               /></span>
             </div>
             <h4>Add new task</h4>
@@ -74,7 +74,7 @@
         </form>
       </main>
       <footer>
-        <script src="/board/assets/index.js" type="module"></script>
+        <script src="/assets/index.js" type="module"></script>
       </footer>
     </div>
   </body>

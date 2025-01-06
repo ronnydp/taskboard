@@ -1,16 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const cardTask = document.querySelectorAll(".card-task");
-
-  function checkFirstVisit() {
-    if(!localStorage.getItem('visited')) {
-      localStorage.setItem('visited', true);
-      window.location.href = '/board/create'
-    }
-  }
-
-  checkFirstVisit();
-
+  
   //^ CARD TASK
+  const cardTask = document.querySelectorAll(".card-task");
   cardTask.forEach((div) => {
     div.style.backgroundColor = "#F5D565";
     const iconSpan = div.querySelector('span[class^="icon-"]').classList.value;
@@ -58,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const taskId = tasklink.getAttribute("data-id");
       const boardId = inputBoardId.value;
 
-      fetch(`/board/${boardId}/tasks/${taskId}`)
+      fetch(`/${boardId}/tasks/${taskId}`)
         .then((response) => response.text())
         .then((data) => {
           const parser = new DOMParser();

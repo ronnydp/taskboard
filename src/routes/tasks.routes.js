@@ -6,23 +6,18 @@ import {
   updateTask,
   deleteTask
 } from "../controllers/tasks.controllers.js";
+import checkBoardId from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.redirect("/board/1/tasks");
-})
+router.get("/:board_id/tasks", checkBoardId, getTasks);
 
-router.get("/board/:board_id/tasks", getTasks);
+router.post("/:board_id/tasks", checkBoardId, createTask);
 
-router.post("/board/:board_id/tasks", createTask);
+router.get("/:board_id/tasks/:id", checkBoardId, getTask);
 
-router.get("/board/:board_id/tasks/:id", getTask);
+router.post("/:board_id/tasks/:id", checkBoardId, updateTask);
 
-router.post("/board/:board_id/tasks/:id", updateTask);
-
-router.get("/board/:board_id/tasks/delete/:id", deleteTask);
-
-
+router.get("/:board_id/tasks/delete/:id", checkBoardId, deleteTask);
 
 export default router;

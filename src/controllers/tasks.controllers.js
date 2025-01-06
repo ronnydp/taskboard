@@ -8,10 +8,12 @@ export const getTasks = async (req, res) => {
       [board_id]
     );
     const data = result.rows;
-    if (data.length === 0) {
-      return res.redirect(`/board/create/`);
-    }
+    console.log(data.length)
     res.render("index", { data });
+    if (data.length === 0) {
+      pool.query("insert into task (title, description, state, icon, board_id) values ('Task To Do', 'Work on a Challenge on devChallenge.io, learn TypeScript.', 'todo', 'https://img.icons8.com/doodle/48/books.png', $1)", [board_id]);
+      res.redirect(`/${board_id}/tasks`);
+    }
   } catch (error) {
     res.send("Error getting tasks");
     console.log(error);
@@ -34,7 +36,7 @@ export const createTask = async (req, res) => {
   if (rowCount === 0) {
     return res.status(404).json({ message: "Task not found" });
   }
-  res.redirect(`/board/${board_id}/tasks`);
+  res.redirect(`/${board_id}/tasks`);
 };
 
 export const getTask = async (req, res) => {
@@ -56,7 +58,7 @@ export const updateTask = async (req, res) => {
     "UPDATE task SET title = $1, description = $2, state= $3, icon = $4 WHERE task_id = $5 RETURNING *",
     [title, description, status, icon, id]
   );
-  res.redirect(`/board/${board_id}/tasks`);
+  res.redirect(`/${board_id}/tasks`);
 };
 
 export const deleteTask = async (req, res) => {
@@ -69,5 +71,5 @@ export const deleteTask = async (req, res) => {
     return res.status(404).json({ message: "Task not found" });
   }
 
-  res.redirect(`/board/${board_id}/tasks`);
+  res.redirect(`/${board_id}/tasks`);
 };

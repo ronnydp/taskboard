@@ -1,5 +1,15 @@
 import { pool } from "../db.js";
 
+export const getBoard = async (req, res) => {
+  const board_id = req.cookies.boardId;
+
+  if(board_id){
+    res.redirect(`/${board_id}/tasks`);
+  } else{
+    res.redirect("/create");
+  }
+};
+
 export const updateBoard = async (req, res) => {
   const { board_id } = req.params;
   const { board_name } = req.body;
@@ -10,38 +20,23 @@ export const updateBoard = async (req, res) => {
   if (data.rowCount === 0) {
     return res.status(404).json({ message: "Board not found" });
   }
-  res.redirect(`/board/${board_id}/tasks`);
-};
-
-export const showBoardForm = async (req, res) => {
-  const result_max_id = await pool.query("SELECT max(id) FROM board;");
-  const board_id_max = result_max_id.rows[0].max + 1;
-  res.render("board", { board_id_max });
+  res.redirect(`/${board_id}/tasks`);
 };
 
 export const createBoard = async (req, res) => {
   try {
-    const { board_id } = req.params;
-    const data = await pool.query(
+    const result_max_id = await pool.query("SELECT max(id) FROM board;");
+    const board_id = result_max_id.rows[0].max + 1;
+    const board_name = "My Task Board";
+    // const { board_id } = req.params;
+    await pool.query(
       "INSERT INTO board (board_title) VALUES ($1)",
-      [req.body.board_name]
+      [board_name]
     );
-    res.redirect(`/board/${board_id}/tasks`);
+    res.cookie("boardId", board_id, { maxAge: 900000, httpOnly: true });
+    res.redirect(`/`);
   } catch (error) {
     res.send("Error creating board");
     console.log(error);
-  }
-};
-
-export const getBoard = async (req, res) => {
-  const { board_id } = req.params;
-  const result = await pool.query("SELECT id FROM board;");
-  
-  const boardExists = result.rows.some(row => row.id === parseInt(board_id));
-
-  if(boardExists){
-    res.redirect(`/board/${board_id}/tasks`);
-  } else{
-    res.redirect("/board/create");
   }
 };

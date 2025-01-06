@@ -3,13 +3,13 @@
     <div class="head">
       <h4>Task details</h4>
       <span id="closeModalBtn" class="close"
-        ><img src="/board/img/close_ring_duotone-1.svg" alt=""
+        ><img src="/img/close_ring_duotone-1.svg" alt=""
       /></span>
     </div>
     <div class="modal-body">
       <!--^ FORM -->
       <form
-        action="/board/<%= data.board_id %>/tasks/<%= data.task_id %>"
+        action="/<%= data.board_id %>/tasks/<%= data.task_id %>"
         id="form"
         method="POST"
       >
@@ -125,7 +125,7 @@
         <div class="form-status">
           <label for="inprogress">
             <span class="icon-inprogress"
-              ><img src="/board/img/inprogress.svg" alt="inprogress"
+              ><img src="/img/inprogress.svg" alt="inprogress"
             /></span>
             <p>In Progress</p>
             <input type="radio" name="status" id="inprogress" value="inprogress"
@@ -135,7 +135,7 @@
 
           <label for="completed">
             <span class="icon-completed"
-              ><img src="/board/img/completed.svg" alt="completed"
+              ><img src="/img/completed.svg" alt="completed"
             /></span>
             <p>Completed</p>
             <input type="radio" name="status" id="completed" value="completed"
@@ -145,7 +145,7 @@
 
           <label for="wontdo">
             <span class="icon-wontdo"
-              ><img src="/board/img/wontdo.svg" alt="wontdo"
+              ><img src="/img/wontdo.svg" alt="wontdo"
             /></span>
             <p>Won't do</p>
             <input type="radio" name="status" id="wontdo" value="wontdo" <%=
@@ -157,15 +157,15 @@
         <!--^ SUBMIT  -->
         <div class="form-buttons">
           <a
-            href="/board/<%= data.board_id %>/tasks/delete/<%= data.task_id %>"
+            href="/<%= data.board_id %>/tasks/delete/<%= data.task_id %>"
           >
             <button type="button">
-              Delete <img src="/board/img/Trash.svg" alt="trash" />
+              Delete <img src="/img/Trash.svg" alt="trash" />
             </button>
           </a>
 
           <button type="submit">
-            Save <img src="/board/img/Done_round.svg" alt="save" />
+            Save <img src="/img/Done_round.svg" alt="save" />
           </button>
         </div>
       </form>
