@@ -8,12 +8,23 @@ export const getTasks = async (req, res) => {
       [board_id]
     );
     const data = result.rows;
-    console.log(data.length)
-    res.render("index", { data });
+    console.log(data.length);
+    
     if (data.length === 0) {
-      pool.query("insert into task (title, description, state, icon, board_id) values ('Task To Do', 'Work on a Challenge on devChallenge.io, learn TypeScript.', 'todo', 'https://img.icons8.com/doodle/48/books.png', $1)", [board_id]);
-      res.redirect(`/${board_id}/tasks`);
+      try {
+        await pool.query(
+          "insert into task (title, description, state, icon, board_id) values ('Task To Do', 'Work on a Challenge on devChallenge.io, learn TypeScript.', 'todo', 'https://img.icons8.com/doodle/48/books.png', $1)",
+          [board_id]
+        );
+        res.redirect(`/${board_id}/tasks`);
+      } catch (insertError) {
+        res
+          .status(500)
+          .send(`Error inserting default task: ${insertError.message}`);
+      }
     }
+
+    res.render("index", { data });
   } catch (error) {
     res.send("Error getting tasks");
     console.log(error);
