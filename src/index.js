@@ -23,11 +23,8 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.static(join(__dirname, 'public')))
 
-
-
 app.use(tasksRouter);
 app.use(boardRouter);
-
 
 app.listen(PORT, () => {
   console.log("Server is running on port", PORT);

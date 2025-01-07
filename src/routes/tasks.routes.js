@@ -10,7 +10,7 @@ import checkBoardId from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/:board_id/tasks", checkBoardId, getTasks);
+router.get("/:board_id/tasks", getTasks);
 
 router.post("/:board_id/tasks", checkBoardId, createTask);
 

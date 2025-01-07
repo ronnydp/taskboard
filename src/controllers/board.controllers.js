@@ -2,12 +2,12 @@ import { pool } from "../db.js";
 
 export const getBoard = async (req, res) => {
   const board_id = req.cookies.boardId;
-
-  if(board_id){
-    res.redirect(`/${board_id}/tasks`);
-  } else{
-    res.redirect("/create");
-  }
+  res.redirect(`/1/tasks`);
+  // if(board_id){
+  //   res.redirect(`/${board_id}/tasks`);
+  // } else{
+  //   res.redirect("/create");
+  // }
 };
 
 export const updateBoard = async (req, res) => {
@@ -28,7 +28,6 @@ export const createBoard = async (req, res) => {
     const result_max_id = await pool.query("SELECT max(id) FROM board;");
     const board_id = result_max_id.rows[0].max + 1;
     const board_name = "My Task Board";
-    // const { board_id } = req.params;
     await pool.query(
       "INSERT INTO board (board_title) VALUES ($1)",
       [board_name]
