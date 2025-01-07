@@ -2,12 +2,11 @@ import { pool } from "../db.js";
 
 export const getBoard = async (req, res) => {
   const board_id = req.cookies.boardId;
-  res.redirect(`/1/tasks`);
-  // if(board_id){
-  //   res.redirect(`/${board_id}/tasks`);
-  // } else{
-  //   res.redirect("/create");
-  // }
+  if(board_id){
+    res.redirect(`/${board_id}/tasks`);
+  } else{
+    res.redirect("/create");
+  }
 };
 
 export const updateBoard = async (req, res) => {
